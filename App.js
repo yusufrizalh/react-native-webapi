@@ -1,21 +1,64 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, Text, Image } from "react-native";
+import PegawaiMain from "./pegawai/PegawaiMain";
+import PegawaiRead from "./pegawai/PegawaiRead";
+import PegawaiEdit from "./pegawai/PegawaiEdit";
 
-export default function App() {
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="PegawaiMain">
+        <Stack.Screen
+          name="PegawaiMain"
+          component={PegawaiMain}
+          options={{
+            title: "Buat Data Pegawai",
+            headerStyle: {
+              backgroundColor: "#001337",
+            },
+            headerTintColor: "#ffffff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            // headerTitle: (props) => <MyLogo {...props} />,
+          }}
+        />
+        <Stack.Screen
+          name="PegawaiRead"
+          component={PegawaiRead}
+          options={{
+            title: "Lihat Data Pegawai",
+            headerStyle: {
+              backgroundColor: "#001337",
+            },
+            headerTintColor: "#ffffff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="PegawaiEdit"
+          component={PegawaiEdit}
+          options={{
+            title: "Ubah Data Pegawai",
+            headerStyle: {
+              backgroundColor: "#001337",
+            },
+            headerTintColor: "#ffffff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
